@@ -95,3 +95,36 @@ gh stack merge --yes
 ```
 
 更多详情请参阅 [Stacked PRs Quickstart](https://docs.github.com/en/pull-requests/get-started/stacked-prs-quickstart)。
+
+## 贡献指南
+
+欢迎通过 Stacked PRs 方式为本仓库贡献文档改进。
+
+### 贡献流程
+
+1. Fork 本仓库并克隆到本地
+2. 使用 `gh stack init` 创建你的 stack
+3. 按逻辑分层编写变更，每层一个分支
+4. 运行 `gh stack submit --auto` 创建 PR stack
+5. 从底层 PR 开始逐层审阅与合并
+
+### 分支命名建议
+
+- 使用描述性分支名，如 `readme/intro`、`docs/api-guide`
+- 每个分支只包含一个逻辑单元的变更
+- 底层分支放基础内容，上层分支放依赖底层的扩展内容
+
+### 修改底层分支
+
+如果在高层分支工作时发现需要修改底层内容：
+
+```bash
+gh stack down          # 导航到底层分支
+# 修改并提交
+gh stack rebase --upstack  # 将变更 rebase 到上层
+gh stack top           # 回到顶层继续工作
+```
+
+## 许可证
+
+本项目采用 MIT 许可证。
